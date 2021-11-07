@@ -1,0 +1,8 @@
+{
+  "repositories": [
+    { "type": "path", "url": "/symfony", "options": {"symlink": false}},
+    { "type": "path", "url": "/core", "options": {"symlink": false}},
+    { "type": "path", "url": "/data-board", "options": {"symlink": false}},
+    { "type": "path", "url": "/basic-block", "options": {"symlink": false}}
+  ]
+}

@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Aggrego\Infrastructure\Symfony\EventClient\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+  Aggrego\Infrastructure\Contract\EventClient\Client:
+    alias: Aggrego\Infrastructure\Symfony\EventClient\Client

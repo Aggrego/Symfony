@@ -1,0 +1,24 @@
+{
+  "name": "aggrego/symfony-terminal-user-component",
+  "type": "symfony-bundle",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Tomasz Kunicki"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "aggrego/board-component-contract": "^0",
+    "symfony/console": "5.3.*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrego\\Component\\Symfony\\TerminalUserComponent\\": "src/"
+    }
+  }
+}

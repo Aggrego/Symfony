@@ -1,0 +1,33 @@
+{
+  "name": "aggrego/infrastructure-symfony-event-client",
+  "type": "library",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Tomasz Kunicki"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "aggrego/infrastructure-event-client-contract": "^0",
+    "symfony/messenger": "^5.3"
+  },
+  "require-dev": {
+    "phpspec/phpspec": "^7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrego\\Infrastructure\\Symfony\\EventClient\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "spec/"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "spec\\Aggrego\\Infrastructure\\Symfony\\EventClient\\": "spec/"
+    }
+  }
+}

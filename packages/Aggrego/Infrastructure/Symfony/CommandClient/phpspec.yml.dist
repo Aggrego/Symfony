@@ -1,0 +1,4 @@
+suites:
+  default:
+    namespace: Aggrego\Infrastructure\Symfony\CommandClient
+    psr4_prefix: Aggrego\Infrastructure\Symfony\CommandClient

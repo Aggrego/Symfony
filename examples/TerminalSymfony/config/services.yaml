@@ -1,0 +1,83 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  Aggrego\TerminalSymfonyExample\:
+    resource: '../src/'
+    exclude:
+      - '../src/DependencyInjection/'
+      - '../src/Entity/'
+      - '../src/Kernel.php'
+      - '../src/Tests/'
+
+  Aggrego\Component\BoardComponent\Application\Board\BoardRepository:
+    alias: Aggrego\TerminalSymfonyExample\Repository\CacheBoardRepository
+
+  Aggrego\Component\BoardComponent\Application\Message\AddresseeFactory:
+    alias: Aggrego\TerminalSymfonyExample\Factory\ExampleAddresseeFactory
+
+  Aggrego\Component\BoardComponent\Application\Profile\Building\BuildingProfileRepository:
+    alias: Aggrego\TerminalSymfonyExample\Repository\LocalBuildingProfileRepository
+
+  Aggrego\Component\BoardComponent\Application\Profile\Transformation\TransformationProfileRepository:
+    alias: Aggrego\TerminalSymfonyExample\Repository\LocalTransformationProfileRepository
+
+  Aggrego\Component\BoardComponent\Domain\Board\Id\IdFactory:
+    alias: Aggrego\Component\BoardComponent\Application\Board\Id\UuidIdFactory
+
+  Aggrego\Component\BoardComponent\Application\Board\Id\UuidIdFactory: ~
+
+  Aggrego\Infrastructure\Contract\Message\Factory\IdFactory:
+    alias: Aggrego\TerminalSymfonyExample\Factory\ExampleMessageIdFactory
+
+  Aggrego\Infrastructure\Contract\Message\Factory\SenderFactory:
+    alias: Aggrego\TerminalSymfonyExample\Factory\ExampleSenderFactory
+
+  Aggrego\Component\BoardComponent\Domain\Board\Factory\BoardFactory:
+    alias: Aggrego\Component\DataBoardComponent\CoreDomainPlugin\DataBoard\Factory\DataBoardFactory
+
+  Aggrego\Component\DataBoardComponent\CoreDomainPlugin\DataBoard\Factory\DataBoardFactory: ~
+  Aggrego\Component\BoardComponent\Application\UseCases\CreateBoard\MessageFactory:
+  Aggrego\Component\BoardComponent\Application\UseCases\TransformBoard\MessageFactory: ~
+
+  Symfony\Component\Cache\Psr16Cache:
+    arguments:
+      - '@local_database'
+  Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Psr16Cache'
+
+  Aggrego\Component\BasicBlockComponent\CoreDomainPlugin\Profile\BasicBlockProfile:
+    factory: '@Aggrego\TerminalSymfonyExample\Factory\BasicBlockProfileFactory'
+
+  Aggrego\Infrastructure\Contract\Message\Factory\CorrelatedCommandFactory:
+    alias: Aggrego\Infrastructure\Contract\Message\Shared\BasicCorrelatedCommandFactory
+
+  Aggrego\Infrastructure\Contract\Message\Shared\BasicCorrelatedCommandFactory: ~
+
+  Aggrego\TerminalSymfonyExample\Model\BoardStatus\BoardStatusRepository: ~
+  Aggrego\TerminalSymfonyExample\Model\TransformationStatus\TransformationStatusRepository: ~
+  Aggrego\TerminalSymfonyExample\Repository\CacheBoardRepository: ~
+
+  Aggrego\TerminalSymfonyExample\Model\BoardStatus\BoardStatusProjection:
+    tags:
+      - { name: 'messenger.message_handler', method: 'handleCreateBoardCommand', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\CreateBoard\CreateBoardCommand', 'priority':10}
+      - { name: 'messenger.message_handler', method: 'handleBoardCreated', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\CreateBoard\Messages\BoardCreated'}
+      - { name: 'messenger.message_handler', method: 'handleBoardNotCreated', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\CreateBoard\Messages\BoardNotCreated', 'priority':-10}
+
+  Aggrego\TerminalSymfonyExample\Model\TransformationStatus\TransformationStatusProjection:
+    tags:
+      - { name: 'messenger.message_handler', method: 'handleTransformBoardCommand', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\TransformBoard\TransformBoardCommand', 'priority':10}
+      - { name: 'messenger.message_handler', method: 'handleBoardCreated', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\TransformBoard\Messages\BoardCreated'}
+      - { name: 'messenger.message_handler', method: 'handleBoardNotTransformed', 'handles': 'Aggrego\Component\BoardComponent\Contract\Application\UseCases\TransformBoard\Messages\BoardNotTransformed', 'priority':-10}
+
+

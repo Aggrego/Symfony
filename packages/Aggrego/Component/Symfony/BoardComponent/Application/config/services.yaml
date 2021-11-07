@@ -1,0 +1,12 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Aggrego\Component\Symfony\BoardComponent\Application\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+#  Aggrego\Component\BoardComponent\Application\:
+#    resource: '../vendor/aggrego/board-component/src/*'
+#    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'

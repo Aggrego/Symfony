@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Aggrego\Infrastructure\Symfony\MessageClient\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+  Aggrego\Infrastructure\Contract\MessageClient\Client:
+    alias: Aggrego\Infrastructure\Symfony\MessageClient\Client

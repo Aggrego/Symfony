@@ -1,0 +1,59 @@
+{
+    "name": "aggrego/symfony",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tomasz Kunicki"
+        }
+    ],
+    "type": "library",
+    "require": {
+        "php": ">=8.0",
+        "symfony/console": "5.3.*",
+        "symfony/http-foundation": "^5.3",
+        "symfony/messenger": "^5.3",
+        "symfony/routing": "^5.3"
+    },
+    "require-dev": {
+        "aggrego/basic-block": "dev-master",
+        "aggrego/core": "dev-master",
+        "aggrego/data-board": "dev-master",
+        "phpspec/phpspec": "^7.1",
+        "symplify/monorepo-builder": "^9.4",
+        "wikimedia/composer-merge-plugin": "^2.0"
+    },
+    "autoload": {
+        "exclude-from-classmap": [
+            "packages/Aggrego/Infrastructure/Symfony/CommandClient/spec/",
+            "packages/Aggrego/Infrastructure/Symfony/EventClient/spec/",
+            "packages/Aggrego/Infrastructure/Symfony/MessageClient/spec/"
+        ],
+        "psr-4": {
+            "Aggrego\\Component\\Symfony\\BoardComponent\\Application\\": "packages/Aggrego/Component/Symfony/BoardComponent/Application/src/",
+            "Aggrego\\Component\\Symfony\\RestUserComponent\\UserInterface\\": "packages/Aggrego/Component/Symfony/RestUserComponent/UserInterface/src/",
+            "Aggrego\\Component\\Symfony\\TerminalUserComponent\\": "packages/Aggrego/Component/Symfony/TerminalUserComponent/src/",
+            "Aggrego\\Infrastructure\\Symfony\\CommandClient\\": "packages/Aggrego/Infrastructure/Symfony/CommandClient/src/",
+            "Aggrego\\Infrastructure\\Symfony\\EventClient\\": "packages/Aggrego/Infrastructure/Symfony/EventClient/src/",
+            "Aggrego\\Infrastructure\\Symfony\\MessageClient\\": "packages/Aggrego/Infrastructure/Symfony/MessageClient/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\Aggrego\\Infrastructure\\Symfony\\CommandClient\\": "packages/Aggrego/Infrastructure/Symfony/CommandClient/spec/",
+            "spec\\Aggrego\\Infrastructure\\Symfony\\EventClient\\": "packages/Aggrego/Infrastructure/Symfony/EventClient/spec/",
+            "spec\\Aggrego\\Infrastructure\\Symfony\\MessageClient\\": "packages/Aggrego/Infrastructure/Symfony/MessageClient/spec/"
+        }
+    },
+    "replace": {
+        "aggrego/infrastructure-symfony-command-client": "self.version",
+        "aggrego/infrastructure-symfony-event-client": "self.version",
+        "aggrego/infrastructure-symfony-message-client": "self.version",
+        "aggrego/symfony-board-component-application": "self.version",
+        "aggrego/symfony-deployment": "self.version",
+        "aggrego/symfony-rest-user-component-user-inteface": "self.version",
+        "aggrego/symfony-terminal-user-component": "self.version",
+        "aggrego/symfony-terminal-user-component-user-inteface": "self.version",
+        "aggrego/symfony-user-component-user-inteface": "self.version"
+    },
+    "minimum-stability": "dev"
+}

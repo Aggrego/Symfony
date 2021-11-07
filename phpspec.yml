@@ -1,0 +1,17 @@
+#composer_suite_detection: true
+suites:
+  aggrego_infrastructure_symfony_commandclient_suite:
+    spec_path: packages/Aggrego/Infrastructure/Symfony/CommandClient
+    src_path: packages/Aggrego/Infrastructure/Symfony/CommandClient/src
+    namespace: Aggrego\Infrastructure\Symfony\CommandClient
+    psr4_prefix: Aggrego\Infrastructure\Symfony\CommandClient
+  aggrego_infrastructure_symfony_eventclient_suite:
+    spec_path: packages/Aggrego/Infrastructure/Symfony/EventClient
+    src_path: packages/Aggrego/Infrastructure/Symfony/EventClient/src
+    namespace: Aggrego\Infrastructure\Symfony\EventClient
+    psr4_prefix: Aggrego\Infrastructure\Symfony\EventClient
+  aggrego_infrastructure_symfony_messageclient_suite:
+    spec_path: packages/Aggrego/Infrastructure/Symfony/MessageClient
+    src_path: packages/Aggrego/Infrastructure/Symfony/MessageClient/src
+    namespace: Aggrego\Infrastructure\Symfony\MessageClient
+    psr4_prefix: Aggrego\Infrastructure\Symfony\MessageClient

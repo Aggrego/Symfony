@@ -1,0 +1,23 @@
+{
+  "name": "aggrego/symfony-board-component-application",
+  "type": "symfony-bundle",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Tomasz Kunicki"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "aggrego/board-component-application": "^0"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrego\\Component\\Symfony\\BoardComponent\\Application\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "aggrego/symfony-rest-user-component-user-inteface",
+  "type": "library",
+  "description": "",
+  "license": "BSD-3-Clause",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Tomasz Kunicki"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "aggrego/board-component-contract": "^0",
+    "symfony/http-foundation": "^5.3",
+    "symfony/routing": "^5.3"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Aggrego\\Component\\Symfony\\RestUserComponent\\UserInterface\\": "src/"
+    }
+  }
+}

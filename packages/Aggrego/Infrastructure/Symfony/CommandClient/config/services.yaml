@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Aggrego\Infrastructure\Symfony\CommandClient\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+  Aggrego\Infrastructure\Contract\CommandClient\Client:
+    alias: Aggrego\Infrastructure\Symfony\CommandClient\Client
